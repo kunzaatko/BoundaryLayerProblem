@@ -24,16 +24,35 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           biber-version: '2.17'
 
-
       - name: Build Slides
         working-directory: ./Slides/
         run: tectonic -X build
+
+      - uses: actions/cache@v3
+        name: Julia Cache
+        with:
+          path: ~/.cache/Tectonic
+          key: ${{ runner.os }}-julia-${{ hashFiles('**/*.jl') }}
+          restore-keys: |
+            ${{ runner.os }}-julia-
+      - uses: julia-actions/setup-julia@v2
+
+      - name: Build Pluto slides
+        working-directory: ./Slides_Interactive
+        run: |
+          julia -e '
+            using Pkg; \
+            Pkg.add("PlutoSliderServer"); \
+            Pkg.add(["DifferentialEquations", "SpecialFunctions", "PlutoUI", "GLMakie", "CairoMakie", "LinearAlgebra", "StatsBase", "LaTeXStrings"]); \
+            using PlutoSliderServer; \
+            PlutoSliderServer.export_notebook("slides.jl")'
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            Slides/build/*
+            Slides/build/*/*.pdf
+            Slides_Interactive/slides.html
             Slides_interactive/slides.jl
             LICENSE
