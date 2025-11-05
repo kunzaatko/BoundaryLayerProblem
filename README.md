@@ -1,3 +1,7 @@
+<a href="https://kunzaatko.github.io/">
+  <img src="https://raw.githubusercontent.com/pedromxavier/flag-badges/main/badges/CZ.svg" alt="made in Czechia">
+</a>
+
 # A Tale of a Boundary-Layer Problem
 
 This repository holds references and slides that I used for a talk at a university seminar called
@@ -48,8 +52,8 @@ package REPL. You can find how to do this at the [`Pkg.jl`](https://pkgdocs.juli
 
 It is as easy as running 
 
-```bash
-$ julia --project  --eval "using Pluto; Pluto.run()"
+```sh
+julia --project  --eval "using Pluto; Pluto.run()"
 ```
 in the [`Slides_Interactive`](Slides_Interactive/) directory and selecting `slides.jl` in the notebook UI. You can run it online in `binder` that is linked (top-right corner) from
 static [`HTML` version](Slides_Interactive/slides.html) of the interactive slides.
@@ -65,8 +69,8 @@ __Requirements:__
 fails to run, you should look over here: [`tectonic#35`](https://github.com/tectonic-typesetting/tectonic/issues/35)_
 
 The slides were compiled by [`tectonic`](https://github.com/tectonic-typesetting/tectonic) using
-```bash
-$ tectonic -X build
+```sh
+tectonic -X build
 ```
 ran in the [`Slides`](Slides/) directory. You can disable / enable presenter notes by modifying the `beamer` package
 options in the [`preamble`](Slides/src/_preamble.tex)
@@ -82,8 +86,8 @@ __Requirements:__
 
 They are generate using `CairoMakie` as `SVG` graphics and converted to `PDF_TEX` using `inkscape` by running the `julia` script
 
-```bash
-$ julia --project  --eval "include(\"generate_figures.jl\")"
+```sh
+julia --project  --eval "include(\"generate_figures.jl\")"
 ```
 inside the [`Slides/figures/sources`](Slides/figures/sources/) directory.
 
