@@ -49,7 +49,7 @@ jobs:
             PlutoSliderServer.export_notebook("slides.jl")'
 
       - name: Upload slides
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Slides
           path: |
