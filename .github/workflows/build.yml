@@ -41,7 +41,7 @@ jobs:
       - name: Build Pluto slides
         working-directory: ./Slides_Interactive
         run: |
-          julia -e '
+          DISPLAY=:0 xvfb-run -s '-screen 0 1024x768x24' -- julia -e '
             using Pkg; \
             Pkg.add("PlutoSliderServer"); \
             Pkg.add(["DifferentialEquations", "SpecialFunctions", "PlutoUI", "GLMakie", "CairoMakie", "LinearAlgebra", "StatsBase", "LaTeXStrings"]); \
